@@ -1,0 +1,60 @@
+version: '3'
+
+services:
+  # Meta node
+  meta-node1:
+    image: cnosdb/cnosdb-meta:latest
+    container_name: cnosdb-meta-01
+    volumes:
+      - /var/lib/cnosdb
+      - ./meta-nodes/config/:/etc/cnosdb
+    environment:
+      - CNOSDB_HOSTNAME=cnosdb-meta-01
+    ports:
+    - "18091:8091"
+
+  meta-node2:
+    image: cnosdb/cnosdb-meta:latest
+    container_name: cnosdb-meta-02
+    volumes:
+      - /var/lib/cnosdb
+      - ./meta-nodes/config/:/etc/cnosdb
+    environment:
+      - CNOSDB_HOSTNAME=cnosdb-meta-02
+    ports:
+    - "28091:8091"
+
+  meta-node3:
+    container_name: cnosdb-meta-03
+    image: cnosdb/cnosdb-meta:latest
+    volumes:
+      - /var/lib/cnosdb
+      - ./meta-nodes/config/:/etc/cnosdb
+    environment:
+      - CNOSDB_HOSTNAME=cnosdb-meta-03
+    ports:
+    - "38091:8091"
+
+  # Data node
+  data-node1:
+    container_name: cnosdb-data-01
+    image: cnosdb/cnosdb-data:latest
+    volumes:
+      - /var/lib/cnosdb
+      - ./data-nodes/config/:/etc/cnosdb
+    environment:
+      - CNOSDB_HOSTNAME=cnosdb-data-01
+    ports:
+    - "18088:8088"
+    - "18086:8086"
+  data-node2:
+    container_name: cnosdb-data-02
+    image: cnosdb/cnosdb-data:latest
+    volumes:
+      - /var/lib/cnosdb
+      - ./data-nodes/config/:/etc/cnosdb
+    environment:
+      - CNOSDB_HOSTNAME=cnosdb-data-02
+    ports:
+    - "28088:8088"
+    - "28086:8086"
