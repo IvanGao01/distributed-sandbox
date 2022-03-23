@@ -38,7 +38,7 @@ services:
   # Data node
   data-node1:
     container_name: cnosdb-data-01
-    image: cnosdb/cnosdb-data:latest
+    image: cnosdb/cnosdb:latest
     volumes:
       - /var/lib/cnosdb
       - ./data-nodes/config/:/etc/cnosdb
@@ -49,7 +49,7 @@ services:
     - "18086:8086"
   data-node2:
     container_name: cnosdb-data-02
-    image: cnosdb/cnosdb-data:latest
+    image: cnosdb/cnosdb:latest
     volumes:
       - /var/lib/cnosdb
       - ./data-nodes/config/:/etc/cnosdb
