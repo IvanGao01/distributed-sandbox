@@ -58,3 +58,25 @@ services:
     ports:
     - "28088:8088"
     - "28086:8086"
+  data-node3:
+    container_name: cnosdb-data-03
+    image: cnosdb/cnosdb:latest
+    volumes:
+      - /var/lib/cnosdb
+      - ./data-nodes/config/:/etc/cnosdb
+    environment:
+      - CNOSDB_HOSTNAME=cnosdb-data-03
+    ports:
+      - "38088:8088"
+      - "38086:8086"
+  data-node4:
+    container_name: cnosdb-data-04
+    image: cnosdb/cnosdb:latest
+    volumes:
+      - /var/lib/cnosdb
+      - ./data-nodes/config/:/etc/cnosdb
+    environment:
+      - CNOSDB_HOSTNAME=cnosdb-data-04
+    ports:
+      - "48088:8088"
+      - "48086:8086"
